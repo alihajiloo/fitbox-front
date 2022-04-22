@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'Iransans-thin';
+  font-weight: 50;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-ultralight';
+  font-weight: 100;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-light';
+  font-weight: 200;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-regular';
+  font-weight: 300;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-medium';
+  font-weight: 400;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-DemiBold';
+  font-weight: 500;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-bold';
+  font-weight: 600;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-extraBold';
+  font-weight: 700;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Iransans-black';
+  font-weight: 800;
+  src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
+}
+
+h1 {
+  font-family: Iransans-bold;
+}
+h2 {
+  font-family: Iransans-DemiBold;
+}
+h3 {
+  font-family: Iransans-medium;
+}
+h4 {
+  font-family: Iransans-regular;
+}
+h5 {
+  font-family: Iransans-light;
+}
+h6 {
+  font-family: Iransans-ultralight;
+}
+
+span {
+  font-family: Iransans-regular;
+}
+
+a {
+  font-family: Iransans-regular;
+}
+
+p,
+li,
+label,
+input,
+div {
+  font-family: Iransans-regular;
+}
+
+button {
+  font-family: Iransans-medium;
+}
+
+.footer {
+  @apply relative shadow-inner bg-gray-50 pt-16 pb-6;
+}
+
+.footer .footer--container {
+  @apply container mx-auto max-w-7xl;
+
+  @screen md {
+    @apply flex-row;
+  }
+}
+
+.footer .text--logo {
+  @apply relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-center select-none;
+}
+
+.bg-web-header {
+  background-image: url('../vectors/programming.svg');
+  display: block;
+  height: auto;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.centered-on-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
