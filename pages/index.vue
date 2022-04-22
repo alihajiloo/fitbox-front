@@ -7,7 +7,7 @@
         width="400"
         height="400"
       />
-      <h2 class="text-center text-3xl text-white">دمبل: سامانه ورزشی هوشمند</h2>
+      <h2 class="text-center text-2xl md:text-3xl lalezar text-white">دمبل: سامانه ورزشی هوشمند</h2>
     </div>
   </div>
 </template>

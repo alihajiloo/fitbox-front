@@ -52,6 +52,11 @@
   src: local('Iransans'), url(~assets/fonts/IRANSansXV.woff2) format('woff2');
 }
 
+@font-face {
+  font-family: 'Lalezar';
+  src: local('Lalezar'), url(~assets/fonts/Lalezar.woff2) format('woff2');
+}
+
 h1 {
   font-family: Iransans-bold;
 }
@@ -120,4 +125,8 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.lalezar{
+  font-family: Lalezar;
 }
