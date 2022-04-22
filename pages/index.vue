@@ -1,13 +1,33 @@
 <template>
-  <div class="mx-auto h-screen bg-primary flex ">
-    <div class="m-auto">
-      <img
-        class=""
-        src="~assets/images/dambbbel.ir.svg"
-        width="400"
-        height="400"
-      />
-      <h2 class="text-center text-2xl md:text-3xl lalezar text-white">دمبل: سامانه ورزشی هوشمند</h2>
+  <div class="mx-auto h-screen bg-primary relative">
+    <button
+      class="
+        absolute
+        bg-primary
+        ring-2
+        rounded
+        ring-white
+        text-white
+        p-2
+        m-2
+        top-0
+        right-0
+      "
+    >
+      دریافت اپلیکیشن
+    </button>
+    <div class="h-screen flex">
+      <div class="m-auto">
+        <img
+          class=""
+          src="~assets/images/dambbbel.ir.svg"
+          width="400"
+          height="400"
+        />
+        <h2 class="text-center text-2xl md:text-3xl lalezar text-white">
+          دمبل: سامانه ورزشی هوشمند
+        </h2>
+      </div>
     </div>
   </div>
 </template>
