@@ -3,7 +3,7 @@ export default {
   ssr: false,
 
   head: {
-    title: 'dambbbel دمبل: سامانه ورزشی',
+    title: 'fitbox فیت‌باکس: سامانه ورزشی',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -43,7 +43,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: "http://localhost:3000/api/v1/",
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -63,5 +63,6 @@ export default {
   build: {},
   server: {
     host: '0.0.0.0',
+    port: '3001',
   },
 }

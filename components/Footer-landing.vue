@@ -14,12 +14,12 @@
                 src="~static/icon.png"
               />
 
-              <h2 class="text-2xl">دمبل</h2>
+              <h2 class="text-2xl">فیت‌باکس</h2>
               <!-- </a> -->
             </NuxtLink>
           </div>
           <div class="my-2">
-            <h5 class="text-md my-0 text-gray-500">با دمبل راحت‌‌تر دمبل بزنید!</h5>
+            <h5 class="text-md my-0 text-gray-500">با فیت‌باکس هوشمندانه ورزش کنید!</h5>
           </div>
         </div>
 
@@ -35,8 +35,7 @@
                     <button>درباره ما</button>
                   </NuxtLink>
                 </li>
-                <li class="mb-2 block">خدمات</li>
-                <li class="mb-2 block">نمونه کارها</li>
+                <li class="mb-2 block">خدمات</li>     
               </ul>
             </div>
 
@@ -57,7 +56,7 @@
         class="w-full flex flex-wrap items-center md:justify-between justify-center"
       >
         <div dir="ltr" class="w-full px-4 mx-auto text-center text-gray-400">
-          © 2022 Plllatform,Inc. All Rights Reserved.
+          © 2022 Hadi Maddahi. All Rights Reserved.
         </div>
       </div>
     </div>
