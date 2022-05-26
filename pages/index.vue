@@ -1,21 +1,17 @@
 <template>
   <div class="mx-auto h-screen bg-primary relative">
-    <button
-      class="
-        absolute
-        bg-primary
-        ring-2
-        rounded
-        ring-white
-        text-white
-        p-2
-        m-2
-        top-0
-        right-0
-      "
-    >
-      دریافت اپلیکیشن
-    </button>
+    <div class="absolute top-0 right-0">
+      <NuxtLink to="/register">
+        <button class="bg-primary ring-2 rounded ring-white text-white p-2 m-2">
+          ثبت نام
+        </button></NuxtLink
+      >
+      <NuxtLink to="/login">
+        <button class="bg-transparent text-white p-2 m-2">
+          ورود
+        </button></NuxtLink
+      >
+    </div>
     <div class="h-screen flex">
       <div class="m-auto">
         <img
