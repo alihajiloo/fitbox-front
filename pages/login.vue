@@ -16,13 +16,15 @@
           <img
             class="mx-auto h-12 md:h-20 w-auto"
             src="~static/icon.png"
-            alt="dammmbel | فیت‌باکس"
+            alt="fitbox | فیت‌باکس"
           />
         </NuxtLink>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
           ورود
         </h2>
-        <h3 class="text-center mt2 text-gray-800">با اکانت فیت‌باکس خود وارد شوید</h3>
+        <h3 class="text-center mt2 text-gray-800">
+          با اکانت فیت‌باکس خود وارد شوید
+        </h3>
         <p dir="rtl" class="mt-2 text-center text-sm text-gray-600">
           یا
           {{ ' ' }}
@@ -33,10 +35,7 @@
           </a>
         </p>
       </div>
-      <form
-        v-on:submit.prevent="login(username, password)"
-        class="mt-8 space-y-6"
-      >
+      <form class="mt-8 space-y-6">
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
@@ -89,6 +88,7 @@
 
         <div>
           <button
+            @click.prevent="login(username, password)"
             type="submit"
             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
           >
@@ -100,6 +100,7 @@
             </span>
             ورود
           </button>
+          <h3 dir="rtl" class="mt-2 text-sm text-center text-pink-800">{{ error }}</h3>
         </div>
       </form>
     </div>
@@ -112,11 +113,13 @@ export default {
     return {
       username: '',
       password: '',
+      error: '',
     }
   },
   methods: {
     async login(username, password) {
       // alert(username+":"+password)
+      let error2 = ''
       await this.$axios
         .post('/auth/login', {
           username: this.username,
@@ -125,13 +128,13 @@ export default {
         .then(function (response) {
           // after login completes
           location.replace('/dashboard')
-
-          console.log(response)
         })
         .catch(function (error) {
-          console.log(error)
-          alert(response)
+          if (error.response.status === 401) {
+            error2 = 'موبایل یا کلمه عبور اشتباه است!'
+          }
         })
+      this.error = error2
     },
   },
 }
