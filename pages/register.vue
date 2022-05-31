@@ -160,6 +160,11 @@
             </span>
             ثبت نام
           </button>
+          <h3
+            dir="rtl"
+            class="mt-2 text-center text-sm text-pink-800">
+            {{ error }}
+          </h3>
         </div>
       </form>
     </div>
@@ -204,7 +209,7 @@ export default {
           if (error.response.status === 402) {
             error2 = "کاربری با این مشخصات قبلا ثبت نام کرده است";
           } else {
-            error2 = "خطایی رخ داده. اطلاعا ورودی را بررسی نمایید!";
+            error2 = "خطایی رخ داده. اطلاعات ورودی را بررسی نمایید!";
           }
         });
       this.error = error2;
