@@ -40,6 +40,80 @@
           name="remember"
           value="true" />
         <div class="-space-y-px rounded-md shadow-sm">
+          <input
+            type="radio"
+            id="ATHLETE"
+            value="ATHLETE"
+            v-model="type" />
+          <label for="ATHLETE">ورزشکار</label>
+
+          <input
+            type="radio"
+            id="COACH"
+            value="COACH"
+            v-model="type" />
+          <label for="COACH">مربی</label>
+
+          <div dir="rtl">
+            <label
+              for="firstName"
+              class="sr-only">
+              نام
+            </label>
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              v-model="firstName"
+              required="نام را وارد کنید!"
+              class="focus:outline-none relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              placeholder="نام" />
+          </div>
+          <div dir="rtl">
+            <label
+              for="lastName"
+              class="sr-only">
+              نام خانوادگی
+            </label>
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              v-model="lastName"
+              required="نام خانوادگی را وارد کنید!"
+              class="focus:outline-none relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              placeholder="نام خانوادگی" />
+          </div>
+          <div dir="rtl">
+            <label
+              for="age"
+              class="sr-only">
+              سن
+            </label>
+            <input
+              id="age"
+              name="age"
+              v-model="age"
+              type="number"
+              required="سن را وارد کنید!"
+              class="focus:outline-none relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              placeholder="سن" />
+          </div>
+          <div dir="rtl">
+            <label
+              for="nationalId"
+              class="sr-only">
+              کد ملی
+            </label>
+            <input
+              id="nationalId"
+              name="nationalId"
+              v-model="nationalId"
+              type="number"
+              required="کد ملی را وارد کنید!"
+              class="focus:outline-none relative block w-full appearance-none rounded-none border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              placeholder="کد ملی" />
+          </div>
           <div>
             <label
               for="phone"
@@ -50,9 +124,10 @@
               id="phone"
               name="phone"
               type="tel"
+              v-model="mobile"
               autocomplete="phone"
               required=""
-              class="focus:outline-none relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              class="focus:outline-none relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               placeholder="موبایل" />
           </div>
           <div>
@@ -64,6 +139,7 @@
             <input
               id="password"
               name="password"
+              v-model="password"
               type="password"
               autocomplete="current-password"
               required=""
@@ -74,6 +150,7 @@
 
         <div>
           <button
+            @click.prevent="register(firstName, lastName, age, mobile, type, nationalId, password)"
             type="submit"
             class="hover:bg-primary-2 focus:outline-none focus:ring-primary-500 group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white focus:ring-2 focus:ring-offset-2">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -91,6 +168,47 @@
 
 <script>
 export default {
-  components: {},
+  data() {
+    return {
+      firstName: "",
+      lastName: "",
+      age: 0,
+      mobile: "",
+      type: "",
+      nationalId: "",
+      username: "",
+      password: "",
+      error: "",
+    };
+  },
+  methods: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async register(firstName, lastName, age, mobile, type, nationalId, password) {
+      // alert(username+":"+password)
+      let error2 = "";
+      await this.$axios
+        .post("/user", {
+          firstName: firstName,
+          lastName: lastName,
+          age: +age,
+          mobile: mobile,
+          type: type,
+          nationalId: nationalId,
+          password: password,
+        })
+        .then(function (response) {
+          // after login completes
+          location.replace("/dashboard");
+        })
+        .catch(function (error) {
+          if (error.response.status === 402) {
+            error2 = "کاربری با این مشخصات قبلا ثبت نام کرده است";
+          } else {
+            error2 = "خطایی رخ داده. اطلاعا ورودی را بررسی نمایید!";
+          }
+        });
+      this.error = error2;
+    },
+  },
 };
 </script>
