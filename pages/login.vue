@@ -148,8 +148,8 @@ export default {
       let error2 = '';
       await this.$axios
         .post('/auth/login', {
-          username: this.username,
-          password: this.password,
+          username: username,
+          password: password,
         })
         .then(function (response) {
           // after login completes
