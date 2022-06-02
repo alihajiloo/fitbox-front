@@ -40,20 +40,26 @@
           name="remember"
           value="true" />
         <div class="-space-y-px rounded-md shadow-sm">
-          <input
-            type="radio"
-            id="ATHLETE"
-            value="ATHLETE"
-            v-model="type" />
-          <label for="ATHLETE">ورزشکار</label>
-
-          <input
-            type="radio"
-            id="COACH"
-            value="COACH"
-            v-model="type" />
-          <label for="COACH">مربی</label>
-
+          <div
+            dir="rtl"
+            class="mb-4 flex justify-center">
+            <div>
+              <input
+                type="radio"
+                id="ATHLETE"
+                value="ATHLETE"
+                v-model="type" />
+              <label for="ATHLETE">ورزشکار</label>
+            </div>
+            <div class="mr-2">
+              <input
+                type="radio"
+                id="COACH"
+                value="COACH"
+                v-model="type" />
+              <label for="COACH">مربی</label>
+            </div>
+          </div>
           <div dir="rtl">
             <label
               for="firstName"
