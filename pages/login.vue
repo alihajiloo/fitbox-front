@@ -109,11 +109,6 @@
             </span>
             ورود
           </button>
-          <h3
-            dir="rtl"
-            class="mt-2 text-center text-sm text-pink-800">
-            {{ error }}
-          </h3>
         </div>
       </form>
     </div>
@@ -122,32 +117,45 @@
 
 <script>
 export default {
+  auth: "guest",
   data() {
     return {
       username: "",
       password: "",
-      error: "",
     };
   },
   methods: {
     async login(username, password) {
-      // alert(username+":"+password)
-      let error2 = "";
-      await this.$axios
-        .post("/auth/login", {
-          username: username,
-          password: password,
+      this.$auth
+        .loginWith("local", {
+          data: {
+            username: username,
+            password: password,
+          },
         })
-        .then(function (response) {
-          // after login completes
-          location.replace("/dashboard");
+        .then(() => {
+          this.$toast.show({
+            message: ".با موفقیت وارد شدید",
+            classToast: "bg-primary",
+            classTitle: "text-teal-100",
+            classMessage: "text-white text-right text-bold",
+            classClose: "text-white",
+            classTimeout: "bg-primary-800",
+          });
+          this.$router.push("/dashboard");
         })
-        .catch(function (error) {
+        .catch((error) => {
           if (error.response.status === 401) {
-            error2 = "موبایل یا کلمه عبور اشتباه است!";
+            this.$toast.show({
+              message: "!موبایل یا کلمه عبور اشتباه است",
+              classToast: "bg-accent-2",
+              classTitle: "text-teal-100",
+              classMessage: "text-white text-right text-bold",
+              classClose: "text-white",
+              classTimeout: "bg-red-800",
+            });
           }
         });
-      this.error = error2;
     },
   },
 };
