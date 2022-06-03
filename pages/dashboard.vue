@@ -189,7 +189,9 @@
                 <div class="text-base font-medium leading-none text-white">
                   {{ $auth.user.firstName + " " + $auth.user.lastName }}
                 </div>
-                <div class="mt-1 text-sm font-medium leading-none text-white"> {{ $auth.user.mobile }}</div>
+                <div class="mt-1 text-sm font-medium leading-none text-white">
+                  {{ $auth.user.mobile }}
+                </div>
               </div>
             </div>
             <div class="mt-3 px-2">
@@ -249,7 +251,7 @@ export default {
         classTitle: "text-teal-100",
         classMessage: "text-white text-right text-bold",
         classClose: "text-white",
-        classTimeout: "bg-teal-800",
+        classTimeout: "bg-red-800",
       });
       await this.$auth.logout();
       this.$router.push("/login");
