@@ -130,3 +130,22 @@ button {
 .lalezar{
   font-family: Lalezar;
 }
+
+.text-bold {
+  font-family: Iransans-bold;
+}
+.text-demiBold {
+  font-family: Iransans-DemiBold;
+}
+.text-medium {
+  font-family: Iransans-medium;
+}
+.text-regular {
+  font-family: Iransans-regular;
+}
+.text-light {
+  font-family: Iransans-light;
+}
+.text-ultralight {
+  font-family: Iransans-ultralight;
+}
