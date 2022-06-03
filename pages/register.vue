@@ -179,6 +179,7 @@
 
 <script>
 export default {
+  auth: "guest",
   data() {
     return {
       firstName: "",
@@ -196,6 +197,8 @@ export default {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async register(firstName, lastName, age, mobile, type, nationalId, password) {
       // alert(username+":"+password)
+      const router = this.$router;
+
       let error2 = "";
       await this.$axios
         .post("/user", {
@@ -209,7 +212,8 @@ export default {
         })
         .then(function (response) {
           // after login completes
-          location.replace("/dashboard");
+          // location.replace("/dashboard");
+          router.push({ path: "/login" });
         })
         .catch(function (error) {
           if (error.response.status === 402) {
