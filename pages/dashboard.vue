@@ -14,30 +14,20 @@
               ></NuxtLink>
               <div class="hidden md:block">
                 <div class="mr-10 flex items-baseline">
-                  <a
-                    href="#"
+                  <NuxtLink
+                    to="/dashboard"
                     class="focus:outline-none rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white focus:bg-gray-700 focus:text-white"
-                    >داشبورد</a
+                    >داشبورد</NuxtLink
                   >
-                  <a
-                    href="#"
+                  <NuxtLink
+                    to="/workoutplan"
                     class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                    >تیم</a
+                    >برنامه ورزشی</NuxtLink
                   >
-                  <a
-                    href="#"
+                  <NuxtLink
+                    to="/mealplan"
                     class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                    >پروژه ها</a
-                  >
-                  <a
-                    href="#"
-                    class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                    >تقویم</a
-                  >
-                  <a
-                    href="#"
-                    class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                    >گزارشات</a
+                    >برنامه غذایی</NuxtLink
                   >
                 </div>
               </div>
@@ -151,30 +141,20 @@
         </div>
         <div :class="[isOpen ? '' : 'hidden', 'md:hidden']">
           <div class="px-2 pt-2 pb-3 sm:px-3">
-            <a
-              href="#"
+             <NuxtLink
+              to="/dashboard"
               class="focus:outline-none block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white focus:bg-gray-700 focus:text-white"
-              >داشبورد</a
+              >داشبورد</NuxtLink
             >
-            <a
-              href="#"
+            <NuxtLink
+              to="/workoutplan"
               class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >تیم</a
+              >برنامه ورزشی</NuxtLink
             >
-            <a
-              href="#"
+            <NuxtLink
+              to="/mealplan"
               class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >پروژه</a
-            >
-            <a
-              href="#"
-              class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >تقویم</a
-            >
-            <a
-              href="#"
-              class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >گزارشات</a
+              >برنامه غذایی</NuxtLink
             >
           </div>
           <div class="border-t border-gray-700 pt-4 pb-3">
@@ -235,6 +215,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "داشبورد fitbox",
+    };
+  },
   data() {
     return {
       isOpen: false,
