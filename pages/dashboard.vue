@@ -69,6 +69,12 @@
                         role="menu"
                         aria-orientation="vertical"
                         aria-labelledby="user-menu">
+                        <NuxtLink
+                          to="/register-athlete"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                          >تکمیل پروفایل</NuxtLink
+                        >
                         <a
                           href="#"
                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -141,7 +147,7 @@
         </div>
         <div :class="[isOpen ? '' : 'hidden', 'md:hidden']">
           <div class="px-2 pt-2 pb-3 sm:px-3">
-             <NuxtLink
+            <NuxtLink
               to="/dashboard"
               class="focus:outline-none block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white focus:bg-gray-700 focus:text-white"
               >داشبورد</NuxtLink
@@ -176,6 +182,10 @@
             </div>
             <div class="mt-3 px-2">
               <a
+                href="#"
+                class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
+                >تکمیل پروفایل</a
+              ><a
                 href="#"
                 class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
                 >پروفایل</a
