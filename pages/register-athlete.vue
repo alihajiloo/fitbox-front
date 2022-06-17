@@ -441,7 +441,6 @@ export default {
     this.height = height;
     this.gender = gender;
     this.bodyType = bodyType;
-    alert(this.age);
   },
 };
 </script>
