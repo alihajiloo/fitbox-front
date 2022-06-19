@@ -188,7 +188,6 @@ export default {
       mobile: "",
       type: "",
       nationalId: "",
-      username: "",
       password: "",
       error: "",
     };
@@ -196,7 +195,6 @@ export default {
   methods: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async register(firstName, lastName, age, mobile, type, nationalId, password) {
-      // alert(username+":"+password)
       const router = this.$router;
 
       let error2 = "";
