@@ -128,9 +128,11 @@
 
                 <div>
                   <button
+                    :disabled="isDisabled"
                     @click.prevent="register_athlete(age, weight, height, gender, bodyType)"
                     type="submit"
-                    class="hover:bg-primary-2 focus:outline-none focus:ring-primary-500 group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white focus:ring-2 focus:ring-offset-2">
+                    class="hover:bg-primary-2 focus:outline-none focus:ring-primary-500 group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white focus:ring-2 focus:ring-offset-2"
+                    :class="{ 'bg-gray-600': isDisabled, 'bg-primary': !isDisabled }">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                       <LockClosedIcon
                         class="h-5 w-5 text-green-500 group-hover:text-green-400"
@@ -156,7 +158,7 @@
 
 <script>
 export default {
-    head() {
+  head() {
     return {
       title: "تکمیل پروفایل fitbox",
     };
@@ -169,34 +171,37 @@ export default {
       gender: "",
       bodyType: "",
       error: "",
+      isDisabled: false,
     };
   },
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async register_athlete(age, weight, height, gender, bodyType) {
-    const router = this.$router;
+  methods: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async register_athlete(age, weight, height, gender, bodyType) {
+      const router = this.$router;
 
-    let error2 = "";
-    await this.$axios
-      .post("/athlete", {
-        age: +age,
-        weight: +weight,
-        height: +height,
-        gender: gender,
-        bodyType: bodyType,
-      })
-      .then(function (response) {
-        // after login completes
-        // location.replace("/dashboard");
-        router.push({ path: "/dashboard" });
-      })
-      .catch(function (error) {
-        if (error.response.status === 402) {
-          error2 = "کاربری با این مشخصات قبلا ثبت نام کرده است";
-        } else {
-          error2 = "خطایی رخ داده. اطلاعات ورودی را بررسی نمایید!";
-        }
-      });
-    this.error = error2;
+      let error2 = "";
+      await this.$axios
+        .post("/athlete", {
+          age: +age,
+          weight: +weight,
+          height: +height,
+          gender: gender,
+          bodyType: bodyType,
+        })
+        .then(function (response) {
+          // after login completes
+          // location.replace("/dashboard");
+          router.push({ path: "/dashboard" });
+        })
+        .catch(function (error) {
+          if (error.response.status === 402) {
+            error2 = "کاربری با این مشخصات قبلا ثبت نام کرده است";
+          } else {
+            error2 = "خطایی رخ داده. اطلاعات ورودی را بررسی نمایید!";
+          }
+        });
+      this.error = error2;
+    },
   },
   async mounted() {
     let age = "";
@@ -204,6 +209,7 @@ export default {
     let height = "";
     let gender = "";
     let bodyType = "";
+    let isDisabled = false;
     await this.$axios
       .get("/athlete/byMobile")
       .then(function (response) {
@@ -212,6 +218,7 @@ export default {
         height = response.data.height;
         gender = response.data.gender;
         bodyType = response.data.bodyType;
+        if (response.data !== "") isDisabled = true;
       })
       .catch(function (error) {});
     this.age = age;
@@ -219,6 +226,7 @@ export default {
     this.height = height;
     this.gender = gender;
     this.bodyType = bodyType;
+    this.isDisabled = isDisabled;
   },
 };
 </script>
