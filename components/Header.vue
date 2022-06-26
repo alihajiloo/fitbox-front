@@ -10,25 +10,26 @@
                 <img
                   class="h-8 w-8"
                   src="~assets/images/dambbbel.ir.svg"
-                  alt="fitbox" /></div
-            ></NuxtLink>
+                  alt="fitbox" />
+              </div>
+            </NuxtLink>
             <div class="hidden md:block">
               <div class="mr-10 flex items-baseline">
                 <NuxtLink
                   to="/dashboard"
-                  class="focus:outline-none rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white focus:bg-gray-700 focus:text-white"
-                  >داشبورد</NuxtLink
+                  class="focus:outline-none rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white focus:bg-gray-700 focus:text-white">
+                  داشبورد</NuxtLink
                 >
                 <NuxtLink
                   to="/workoutplan"
-                  class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                  >برنامه ورزشی</NuxtLink
-                >
+                  class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
+                  برنامه ورزشی
+                </NuxtLink>
                 <NuxtLink
                   to="/mealplan"
-                  class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                  >برنامه غذایی</NuxtLink
-                >
+                  class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
+                  برنامه غذایی
+                </NuxtLink>
               </div>
             </div>
           </div>
@@ -73,23 +74,31 @@
                       aria-orientation="vertical"
                       aria-labelledby="user-menu">
                       <NuxtLink
+                        v-if="$auth.user.type === 'ATHLETE'"
                         to="/register-athlete"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                        >تکمیل پروفایل</NuxtLink
-                      >
+                        role="menuitem">
+                        تکمیل پروفایل
+                      </NuxtLink>
+                      <NuxtLink
+                        v-if="$auth.user.type === 'COACH'"
+                        to="/register-coach"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem">
+                        تکمیل پروفایل
+                      </NuxtLink>
                       <NuxtLink
                         to="/profile"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                        >پروفایل</NuxtLink
-                      >
+                        role="menuitem">
+                        پروفایل
+                      </NuxtLink>
                       <NuxtLink
                         to="/settings"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                        >تنظیمات</NuxtLink
-                      >
+                        role="menuitem">
+                        تنظیمات
+                      </NuxtLink>
                       <a
                         @click="logout"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -155,18 +164,18 @@
         <div class="px-2 pt-2 pb-3 sm:px-3">
           <NuxtLink
             to="/dashboard"
-            class="focus:outline-none block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white focus:bg-gray-700 focus:text-white"
-            >داشبورد</NuxtLink
+            class="focus:outline-none block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white focus:bg-gray-700 focus:text-white">
+            داشبورد</NuxtLink
           >
           <NuxtLink
             to="/workoutplan"
-            class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-            >برنامه ورزشی</NuxtLink
+            class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
+            برنامه ورزشی</NuxtLink
           >
           <NuxtLink
             to="/mealplan"
-            class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-            >برنامه غذایی</NuxtLink
+            class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
+            برنامه غذایی</NuxtLink
           >
         </div>
         <div class="border-t border-gray-700 pt-4 pb-3">
@@ -187,19 +196,31 @@
             </div>
           </div>
           <div class="mt-3 px-2">
-            <a
-              href="#"
+            <NuxtLink
+              v-if="$auth.user.type === 'ATHLETE'"
+              to="/register-athlete"
               class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >تکمیل پروفایل</a
-            ><a
-              href="#"
-              class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >پروفایل</a
+              role="menuitem">
+              تکمیل پروفایل</NuxtLink
             >
-            <a
-              href="#"
+            <NuxtLink
+              v-if="$auth.user.type === 'COACH'"
+              to="/register-coach"
+              class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
+              role="menuitem">
+              تکمیل پروفایل</NuxtLink
+            >
+            <NuxtLink
+              to="/profile"
+              class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
+              role="menuitem">
+              پروفایل</NuxtLink
+            >
+            <NuxtLink
+              to="/settings"
               class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >تنظیمات</a
+              role="menuitem">
+              تنظیمات</NuxtLink
             >
             <a
               @click="logout"
