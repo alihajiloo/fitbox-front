@@ -1,244 +1,161 @@
 <template>
   <div dir="rtl">
     <div>
-      <nav class="bg-primary-800">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="flex h-16 items-center justify-between">
-            <div class="flex items-center">
-              <NuxtLink to="/">
-                <div class="flex-shrink-0">
-                  <img
-                    class="h-8 w-8"
-                    src="~assets/images/dambbbel.ir.svg"
-                    alt="fitbox" /></div
-              ></NuxtLink>
-              <div class="hidden md:block">
-                <div class="mr-10 flex items-baseline">
-                  <NuxtLink
-                    to="/dashboard"
-                    class="focus:outline-none rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white focus:bg-gray-700 focus:text-white"
-                    >داشبورد</NuxtLink
-                  >
-                  <NuxtLink
-                    to="/workoutplan"
-                    class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                    >برنامه ورزشی</NuxtLink
-                  >
-                  <NuxtLink
-                    to="/mealplan"
-                    class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                    >برنامه غذایی</NuxtLink
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="hidden md:block">
-              <div class="mr-4 flex items-center md:mr-6">
-                <!-- Profile dropdown -->
-                <div class="relative">
-                  <div>
-                    <div class="flex max-w-xs justify-center">
-                      <button
-                        @click="toggle"
-                        class="focus:outline-none focus:shadow-solid rounded-full text-sm text-white"
-                        id="user-menu"
-                        aria-label="User menu"
-                        aria-haspopup="true">
-                        <img
-                          class="h-8 w-8 rounded-full"
-                          src="~assets/vectors/profile.svg"
-                          alt />
-                      </button>
-                    </div>
-                    <h3 class="text-center text-white">
-                      {{ $auth.user.firstName + " " + $auth.user.lastName }}
-                    </h3>
-                  </div>
-                  <transition
-                    enter-active-class="transition ease-out duration-100"
-                    enter-class="transform opacity-0 scale-95"
-                    enter-to-class="transform opacity-100 scale-100"
-                    leave-active-class="transition ease-in duration-75"
-                    leave-class="transform opacity-100 scale-100"
-                    leave-to-class="transform opacity-0 scale-95">
-                    <div
-                      v-show="isOpen"
-                      class="absolute left-0 mt-2 w-48 origin-top-right rounded-md shadow-lg">
-                      <div
-                        class="shadow-xs rounded-md bg-white py-1"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="user-menu">
-                        <NuxtLink
-                          to="/register-athlete"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                          >تکمیل پروفایل</NuxtLink
-                        >
-                        <a
-                          href="#"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                          >پروفایل</a
-                        >
-                        <a
-                          href="#"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                          >تنظیمات</a
-                        >
-                        <a
-                          @click="logout"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem">
-                          خروج
-                        </a>
-                      </div>
-                    </div>
-                  </transition>
-                </div>
-                <button
-                  class="focus:outline-none mr-3 rounded-full border-2 border-transparent p-1 text-white hover:text-white focus:bg-gray-700 focus:text-white"
-                  aria-label="Notifications">
-                  <svg
-                    class="h-6 w-6"
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div class="-mr-2 flex md:hidden">
-              <!-- Mobile menu button -->
-              <button
-                @click="toggle"
-                class="focus:outline-none inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
-                <svg
-                  :class="[isOpen ? 'hidden' : 'block', 'h-6 w-6']"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-                <svg
-                  :class="[isOpen ? 'block' : 'hidden', 'h-6 w-6']"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div :class="[isOpen ? '' : 'hidden', 'md:hidden']">
-          <div class="px-2 pt-2 pb-3 sm:px-3">
-            <NuxtLink
-              to="/dashboard"
-              class="focus:outline-none block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white focus:bg-gray-700 focus:text-white"
-              >داشبورد</NuxtLink
-            >
-            <NuxtLink
-              to="/workoutplan"
-              class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >برنامه ورزشی</NuxtLink
-            >
-            <NuxtLink
-              to="/mealplan"
-              class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-              >برنامه غذایی</NuxtLink
-            >
-          </div>
-          <div class="border-t border-gray-700 pt-4 pb-3">
-            <div class="flex items-center px-5">
-              <div class="flex-shrink-0">
-                <img
-                  class="h-10 w-10 rounded-full"
-                  src="~assets/vectors/profile.svg"
-                  alt />
-              </div>
-              <div class="mr-3">
-                <div class="text-base font-medium leading-none text-white">
-                  {{ $auth.user.firstName + " " + $auth.user.lastName }}
-                </div>
-                <div class="mt-1 text-sm font-medium leading-none text-white">
-                  {{ $auth.user.mobile }}
-                </div>
-              </div>
-            </div>
-            <div class="mt-3 px-2">
-              <a
-                href="#"
-                class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                >تکمیل پروفایل</a
-              ><a
-                href="#"
-                class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                >پروفایل</a
-              >
-              <a
-                href="#"
-                class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
-                >تنظیمات</a
-              >
-              <a
-                @click="logout"
-                class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
-                خروج
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold leading-tight text-gray-900">داشبورد</h1>
+          <h1 class="text-3xl font-bold leading-tight text-gray-900">پروفایل</h1>
         </div>
       </header>
       <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
           <!-- Replace with your content -->
-          <div class="px-4 py-6 sm:px-0">
-            <div>
+          <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div class="w-full max-w-md space-y-8">
               <div class="mx-auto flex max-w-xs">
                 <button
-                  @click="toggle"
-                  class="focus:outline-none focus:shadow-solid mx-auto rounded-full text-sm text-white"
-                  id="user-menu"
-                  aria-label="User menu"
-                  aria-haspopup="true">
+                  class="focus:outline-none focus:shadow-solid mx-auto rounded-full text-sm text-white">
                   <img
                     class="h-20 w-20 rounded-full"
                     src="~assets/vectors/profile.svg"
                     alt />
                 </button>
               </div>
-              <h3 class="text-center text-black">
-                {{ firstName + " " + lastName }}
-              </h3> <h3 class="text-center text-black">
-                {{ mobile }}
-              </h3> <h3 class="text-center text-black">
-                {{ age }}
-              </h3><h3 class="text-center text-black">
-                {{ nationalId }}
-              </h3><h3 class="text-center text-black">
-                {{ type }}
-              </h3>
+              <form
+                class="mt-8 space-y-6"
+                action="#"
+                novalidate="false"
+                @submit.prevent="update(firstName, lastName, age, mobile, type, nationalId)"
+                method="POST">
+                <input
+                  type="hidden"
+                  name="remember"
+                  value="true" />
+                <div class="-space-y-px rounded-md shadow-sm">
+                  <div
+                    dir="rtl"
+                    class="mb-4 flex justify-center">
+                    <div>
+                      <input
+                        type="radio"
+                        id="ATHLETE"
+                        value="ATHLETE"
+                        v-model="type" />
+                      <label for="ATHLETE">ورزشکار</label>
+                    </div>
+                    <div class="mr-2">
+                      <input
+                        type="radio"
+                        id="COACH"
+                        value="COACH"
+                        v-model="type" />
+                      <label for="COACH">مربی</label>
+                    </div>
+                  </div>
+                  <div dir="rtl">
+                    <label
+                      for="firstName"
+                      class="text-demiBold mt-4 mb-2 mr-1 block text-xs sm:text-base">
+                      نام
+                    </label>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      v-model="firstName"
+                      required="نام را وارد کنید!"
+                      class="focus:outline-none relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="نام" />
+                  </div>
+                  <div dir="rtl">
+                    <label
+                      for="lastName"
+                      class="text-demiBold mt-4 mb-2 mr-1 block text-xs sm:text-base">
+                      نام خانوادگی
+                    </label>
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      v-model="lastName"
+                      required="نام خانوادگی را وارد کنید!"
+                      class="focus:outline-none relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="نام خانوادگی" />
+                  </div>
+                  <div dir="rtl">
+                    <label
+                      for="age"
+                      class="text-demiBold mt-4 mb-2 mr-1 block text-xs sm:text-base">
+                      سن
+                    </label>
+                    <input
+                      id="age"
+                      name="age"
+                      v-model="age"
+                      type="number"
+                      required="سن را وارد کنید!"
+                      class="focus:outline-none relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="سن" />
+                  </div>
+                  <div dir="rtl">
+                    <label
+                      for="nationalId"
+                      class="text-demiBold mt-4 mb-2 mr-1 block text-xs sm:text-base">
+                      کد ملی
+                    </label>
+                    <input
+                      id="nationalId"
+                      name="nationalId"
+                      v-model="nationalId"
+                      type="number"
+                      disabled
+                      required="کد ملی را وارد کنید!"
+                      class="focus:outline-none relative block w-full appearance-none rounded-md border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="کد ملی" />
+                  </div>
+                  <div>
+                    <label
+                      for="phone"
+                      class="text-demiBold mt-4 mb-2 mr-1 block text-xs sm:text-base">
+                      موبایل
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      v-model="mobile"
+                      autocomplete="phone"
+                      disabled
+                      class="focus:outline-none relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="موبایل" />
+                  </div>
+                </div>
+
+                <div>
+                  <button
+                    type="submit"
+                    class="hover:bg-primary-2 focus:outline-none focus:ring-primary-500 group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white focus:ring-2 focus:ring-offset-2">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                      <LockClosedIcon
+                        class="h-5 w-5 text-green-500 group-hover:text-green-400"
+                        aria-hidden="true" />
+                    </span>
+                    ویرایش
+                  </button>
+                  <h3
+                    dir="rtl"
+                    class="mt-2 text-center text-sm text-pink-800">
+                    {{ error }}
+                  </h3>
+                  <div
+                    dir="rtl"
+                    v-if="errors.length">
+                    <b>خطاهای زیر را برطرف کنید:</b>
+                    <ul>
+                      <li v-for="error in errors">{{ error }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
           <!-- /End replace -->
@@ -264,23 +181,39 @@ export default {
       mobile: "",
       type: "",
       nationalId: "",
+      errors: [],
     };
   },
   methods: {
-    toggle() {
-      this.isOpen = !this.isOpen;
-    },
-    async logout() {
-      this.$toast.show({
-        message: ".با موفقیت خارج شدید",
-        classToast: "bg-accent-2",
-        classTitle: "text-teal-100",
-        classMessage: "text-white text-right text-bold",
-        classClose: "text-white",
-        classTimeout: "bg-red-800",
-      });
-      await this.$auth.logout();
-      this.$router.push("/login");
+    async update(firstName, lastName, age, mobile, type, nationalId, password) {
+      this.errors = [];
+
+      const router = this.$router;
+
+      let error2 = "";
+      await this.$axios
+        .post("/user", {
+          firstName: firstName,
+          lastName: lastName,
+          age: +age,
+          mobile: mobile,
+          type: type,
+          nationalId: nationalId,
+          password: password,
+        })
+        .then(function (response) {
+          // after login completes
+          // location.replace("/dashboard");
+          router.push({ path: "/login" });
+        })
+        .catch(function (error) {
+          if (error.response.status === 402) {
+            error2 = "کاربری با این مشخصات قبلا ثبت نام کرده است";
+          } else {
+            error2 = "خطایی رخ داده. اطلاعات ورودی را بررسی نمایید!";
+          }
+        });
+      this.error = error2;
     },
   },
   async mounted() {

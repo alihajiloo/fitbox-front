@@ -26,7 +26,7 @@
             href="#"
             class="font-medium text-indigo-600 hover:text-indigo-500">
             <NuxtLink to="login">
-              <TButton>وارد شوید</TButton>
+              <TButton>وارد شوید </TButton>
             </NuxtLink>
           </a>
         </p>
@@ -34,6 +34,8 @@
       <form
         class="mt-8 space-y-6"
         action="#"
+        novalidate="false"
+        @submit.prevent="register(firstName, lastName, age, mobile, type, nationalId, password)"
         method="POST">
         <input
           type="hidden"
@@ -156,7 +158,6 @@
 
         <div>
           <button
-            @click.prevent="register(firstName, lastName, age, mobile, type, nationalId, password)"
             type="submit"
             class="hover:bg-primary-2 focus:outline-none focus:ring-primary-500 group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white focus:ring-2 focus:ring-offset-2">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -171,6 +172,14 @@
             class="mt-2 text-center text-sm text-pink-800">
             {{ error }}
           </h3>
+          <div
+            dir="rtl"
+            v-if="errors.length">
+            <b>خطاهای زیر را برطرف کنید:</b>
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+          </div>
         </div>
       </form>
     </div>
@@ -179,6 +188,7 @@
 
 <script>
 export default {
+  layout: "landing",
   auth: "guest",
   data() {
     return {
@@ -190,11 +200,20 @@ export default {
       nationalId: "",
       password: "",
       error: "",
+      errors: [],
     };
   },
   methods: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async register(firstName, lastName, age, mobile, type, nationalId, password) {
+      this.errors = [];
+
+      if (!this.password) {
+        this.errors.push("کلمه عبور را وارد کنید!");
+      } else if (!this.validPassword(this.password)) {
+        this.errors.push("کلمه عبور باید حداقل ۸ کاراکتر و شامل اعداد و حروف کوچک و بزرگ باشد!");
+      }
+
       const router = this.$router;
 
       let error2 = "";
@@ -221,6 +240,10 @@ export default {
           }
         });
       this.error = error2;
+    },
+    validPassword: function (password) {
+      var re = /^((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z])[^\s]{8,20}$/;
+      return re.test(password);
     },
   },
 };
