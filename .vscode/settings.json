@@ -1,4 +1,5 @@
 {
-    "html.format.wrapAttributesIndentSize": null,
-    "html.format.wrapAttributes": "force-aligned"
+  "editor.formatOnSave": true,
+  "html.format.wrapAttributes": "force-aligned",
+  "html.format.wrapLineLength": 80
 }

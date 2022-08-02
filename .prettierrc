@@ -1,8 +1,9 @@
 {
   "semi": true,
   "singleQuote": false,
-  "printWidth": 100,
+  "printWidth": 120,
   "tabWidth": 2,
-  "singleAttributePerLine": true,
-  "bracketSameLine": true
+  "bracketSameLine": true,
+  "htmlWhitespaceSensitivity": "css",
+  "singleAttributePerLine": true
 }
