@@ -16,9 +16,7 @@
           <div class="px-4 py-6 sm:px-0">
             <div class="h-auto rounded-lg border-4 border-dashed border-gray-200 px-8">
               <div>
-                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                  اطلاعات حساب خود را تکمیل کنید
-                </h2>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">اطلاعات حساب خود را تکمیل کنید</h2>
               </div>
               <form
                 class="mt-8 space-y-6"
