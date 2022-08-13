@@ -7,9 +7,12 @@ module.exports = {
   content: ["./node_modules/tv-toast/**/*.vue"],
   theme: {
     extend: {
+      blur: {
+        xs: "2px",
+      },
       colors: {
         primary: "#7678ed",
-        "primary-800": "#3d348b",
+        "primary-600": "#5a56bc",
         "accent-2": "#f35b04",
         accent: "#da4167",
         "accent-700": "#d62f59",
