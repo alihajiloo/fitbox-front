@@ -16,18 +16,14 @@
             src="~static/icon.png"
             alt="Workflow" />
         </NuxtLink>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          حساب فیت‌باکس خود را بسازید
-        </h2>
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">حساب فیت‌باکس خود را بسازید</h2>
         <p class="mt-2 text-center text-sm text-gray-600">
           یا
           {{ " " }}
           <a
             href="#"
             class="font-medium text-indigo-600 hover:text-indigo-500">
-            <NuxtLink to="login">
-              <TButton>وارد شوید </TButton>
-            </NuxtLink>
+            <NuxtLink to="login"> وارد شوید </NuxtLink>
           </a>
         </p>
       </div>
@@ -160,11 +156,6 @@
           <button
             type="submit"
             class="hover:bg-primary-2 focus:outline-none focus:ring-primary-500 group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white focus:ring-2 focus:ring-offset-2">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-              <LockClosedIcon
-                class="h-5 w-5 text-green-500 group-hover:text-green-400"
-                aria-hidden="true" />
-            </span>
             ثبت نام
           </button>
           <h3
