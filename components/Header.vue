@@ -1,23 +1,24 @@
 <template>
   <!-- navbar goes here -->
   <div dir="rtl">
-    <nav class="bg-primary-800">
+    <nav class="bg-primary-600">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
           <div class="flex items-center">
             <NuxtLink to="/">
-              <div class="flex-shrink-0">
+              <div class="flex">
                 <img
                   class="h-8 w-8"
                   src="~assets/images/dambbbel.ir.svg"
                   alt="fitbox" />
+                <h3 class="text-bold my-auto mr-2 text-white">فیت‌باکس</h3>
               </div>
             </NuxtLink>
             <div class="hidden md:block">
               <div class="mr-10 flex items-baseline">
                 <NuxtLink
                   to="/dashboard"
-                  class="focus:outline-none rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white focus:bg-gray-700 focus:text-white">
+                  class="focus:outline-none rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
                   داشبورد</NuxtLink
                 >
                 <NuxtLink
@@ -26,9 +27,9 @@
                   برنامه ورزشی
                 </NuxtLink>
                 <NuxtLink
-                  to="/mealplan"
+                  to="/coaches"
                   class="focus:outline-none mr-4 rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
-                  برنامه غذایی
+                  مربی ها
                 </NuxtLink>
               </div>
             </div>
@@ -67,7 +68,7 @@
                   leave-to-class="transform opacity-0 scale-95">
                   <div
                     v-show="isOpen"
-                    class="absolute left-0 mt-2 w-48 origin-top-right rounded-md shadow-lg">
+                    class="absolute left-0 z-50 mt-2 w-48 origin-top-right rounded-md shadow-lg">
                     <div
                       class="shadow-xs rounded-md bg-white py-1"
                       role="menu"
@@ -99,12 +100,12 @@
                         role="menuitem">
                         تنظیمات
                       </NuxtLink>
-                      <a
+                      <button
                         @click="logout"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        class="block w-full px-4 py-2 text-right text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem">
                         خروج
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </transition>
@@ -164,7 +165,7 @@
         <div class="px-2 pt-2 pb-3 sm:px-3">
           <NuxtLink
             to="/dashboard"
-            class="focus:outline-none block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white focus:bg-gray-700 focus:text-white">
+            class="focus:outline-none block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
             داشبورد</NuxtLink
           >
           <NuxtLink
@@ -173,9 +174,9 @@
             برنامه ورزشی</NuxtLink
           >
           <NuxtLink
-            to="/mealplan"
+            to="/coaches"
             class="focus:outline-none mt-1 block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white">
-            برنامه غذایی</NuxtLink
+            مربی ها</NuxtLink
           >
         </div>
         <div class="border-t border-gray-700 pt-4 pb-3">
