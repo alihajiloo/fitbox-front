@@ -12,8 +12,7 @@
           <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div class="w-full max-w-md space-y-8">
               <div class="mx-auto flex max-w-xs">
-                <button
-                  class="focus:outline-none focus:shadow-solid mx-auto rounded-full text-sm text-white">
+                <button class="focus:outline-none focus:shadow-solid mx-auto rounded-full text-sm text-white">
                   <img
                     class="h-20 w-20 rounded-full"
                     src="~assets/vectors/profile.svg"
@@ -174,7 +173,6 @@ export default {
   },
   data() {
     return {
-      isOpen: false,
       firstName: "",
       lastName: "",
       age: 0,
