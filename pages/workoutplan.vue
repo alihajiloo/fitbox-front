@@ -103,7 +103,7 @@
                         >مدت</label
                       >
                       <input
-                        type="tel"
+                        type="number"
                         name="duration"
                         id="duration"
                         v-model="duration"
