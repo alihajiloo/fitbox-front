@@ -216,6 +216,8 @@ export default {
 
     async create(name, goal, duration, athleteMobile) {
       let toast = this.$toast;
+      let toggleModal = this.toggleModal;
+      let getWorkoutPlan = this.getWorkoutPlan;
       await this.$axios
         .post("/workout-plan", {
           name: name,
@@ -232,6 +234,8 @@ export default {
             classClose: "text-white",
             classTimeout: "bg-primary-800",
           });
+          toggleModal();
+          getWorkoutPlan();
         })
         .catch(function (error) {
           if (error.response.status === 401) {
@@ -266,16 +270,28 @@ export default {
           }
         });
     },
+    async getWorkoutPlan() {
+      let workoutPlans = [];
+      if (this.$auth.user.type === "ATHLETE") {
+        await this.$axios
+          .get("/workout-plan/athleteWorkoutPlans")
+          .then(function (response) {
+            workoutPlans = response.data.workoutPlans;
+          })
+          .catch(function (error) {});
+      } else if (this.$auth.user.type === "COACH") {
+        await this.$axios
+          .get("/workout-plan/coachWorkoutPlans")
+          .then(function (response) {
+            workoutPlans = response.data.workoutPlans;
+          })
+          .catch(function (error) {});
+      }
+      this.workoutPlans = workoutPlans;
+    },
   },
   async mounted() {
-    let workoutPlans = [];
-    await this.$axios
-      .get("/workout-plan/athleteWorkoutPlans")
-      .then(function (response) {
-        workoutPlans = response.data.workoutPlans;
-      })
-      .catch(function (error) {});
-    this.workoutPlans = workoutPlans;
+    this.getWorkoutPlan();
   },
 };
 </script>
