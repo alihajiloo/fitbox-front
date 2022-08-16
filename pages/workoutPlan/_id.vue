@@ -129,11 +129,11 @@
                       >
                     </div>
                   </td>
-                  <th
+                  <td
                     scope="row"
                     class="whitespace-nowrap py-4 px-2 font-medium text-gray-900 dark:text-white">
                     {{ infos.name }}
-                  </th>
+                  </td>
                   <td class="py-4 px-2">
                     {{ infos.maxSet == infos.minSet ? infos.maxSet : infos.maxSet + " - " + infos.minSet }}
                   </td>
@@ -149,6 +149,149 @@
                         alt="انجام شد" />
                     </a>
                   </td> -->
+                </tr>
+                <tr>
+                  <!-- Modal toggle -->
+                  <button
+                    v-if="$auth.user.type === 'COACH'"
+                    type="button"
+                    @click="toggleModal"
+                    data-modal-toggle="newWorkoutPlan-modal"
+                    class="h-min mr-2 mb-2 flex w-max rounded-lg border border-purple-700 px-5 py-2.5 text-center text-sm font-medium text-purple-700 hover:bg-primary-600 hover:text-white dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-500 dark:hover:text-white dark:focus:ring-purple-900">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="ml-1 h-5 w-5"
+                      fill="none hover:fill-white"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 4v16m8-8H4" />
+                    </svg>
+                    افزودن آیتم
+                  </button>
+
+                  <!-- Start Modal -->
+                  <div
+                    id="newWorkoutPlan-modal"
+                    class="h-modal fixed top-0 right-0 left-0 z-40 block flex w-full items-center justify-center overflow-y-auto overflow-x-hidden backdrop-blur-sm backdrop-brightness-75 backdrop-filter md:inset-0 md:h-full"
+                    aria-modal="true"
+                    :class="[!isOpen ? 'hidden' : '']"
+                    role="dialog">
+                    <div class="relative h-full w-full max-w-md p-4 md:h-auto">
+                      <!-- Modal content -->
+                      <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+                        <button
+                          @click="toggleModal"
+                          type="button"
+                          class="absolute top-3 left-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                          data-modal-toggle="authentication-modal">
+                          <svg
+                            aria-hidden="true"
+                            class="h-5 w-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                          </svg>
+                          <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="py-6 px-6 lg:px-8">
+                          <h3 class="text-demiBold mb-4 text-xl text-gray-900 dark:text-white">افزودن آیتم جدید</h3>
+                          <form class="space-y-6">
+                            <div>
+                              <label
+                                for="infoName"
+                                class="text-medium mb-2 block text-sm text-gray-900 dark:text-gray-300"
+                                >نام</label
+                              >
+                              <input
+                                type="text"
+                                name="infoName"
+                                id="infoName"
+                                v-model="infoName"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                placeholder="جلو بازو دمبل"
+                                required="" />
+                            </div>
+
+                            <div>
+                              <label
+                                for="minSet"
+                                class="text-medium mb-2 block text-sm text-gray-900 dark:text-gray-300"
+                                >ست (مینیمم)</label
+                              >
+                              <input
+                                type="number"
+                                name="minSet"
+                                id="minSet"
+                                v-model="minSet"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                placeholder="۳ ست"
+                                required="" />
+                            </div>
+                            <div>
+                              <label
+                                for="maxSet"
+                                class="text-medium mb-2 block text-sm text-gray-900 dark:text-gray-300"
+                                >ست (ماکسیمم)</label
+                              >
+                              <input
+                                type="number"
+                                name="maxSet"
+                                id="maxSet"
+                                v-model="maxSet"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                placeholder="۵ ست"
+                                required="" />
+                            </div>
+                            <div>
+                              <label
+                                for="minReps"
+                                class="text-medium mb-2 block text-sm text-gray-900 dark:text-gray-300"
+                                >تکرار (مینیمم)</label
+                              >
+                              <input
+                                type="number"
+                                name="minReps"
+                                id="minReps"
+                                v-model="minReps"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                placeholder="۶ بار"
+                                required="" />
+                            </div>
+                            <div>
+                              <label
+                                for="maxReps"
+                                class="text-medium mb-2 block text-sm text-gray-900 dark:text-gray-300"
+                                >تکرار (ماکسیمم)</label
+                              >
+                              <input
+                                type="number"
+                                name="maxReps"
+                                id="maxReps"
+                                v-model="maxReps"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                placeholder="۱۰ بار"
+                                required="" />
+                            </div>
+                            <button
+                              @click.prevent="create(infoName, minSet, maxSet, minReps, maxReps)"
+                              type="submit"
+                              class="focus:outline-none w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-purple-700 dark:bg-blue-600 dark:hover:bg-purple-700">
+                              ثبت
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Modal -->
                 </tr>
               </tbody>
             </table>
@@ -172,9 +315,15 @@ export default {
       workoutPlan: {},
       day: "SATURDAY",
       name: "",
+      infoName: "",
+      minSet: "",
+      maxSet: "",
+      minReps: "",
+      maxReps: "",
       workoutPlanInfos: {},
       active: "active bg-blue-500 text-white dark:hover:bg-blue-700",
       notActive: "text-gray-900 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white",
+      isOpen: false,
     };
   },
   // computed: {
@@ -185,6 +334,12 @@ export default {
   //   },
   // },
   methods: {
+    toggleModal() {
+      this.isOpen = !this.isOpen;
+    },
+    handleFocusOut() {
+      this.isOpen = !this.isOpen;
+    },
     async getWorkoutPlan(day) {
       let workoutPlan = {};
       await this.$axios
@@ -199,6 +354,47 @@ export default {
       if (workoutPlan) {
         this.workoutPlanInfos = workoutPlan.workoutPlanInfos;
       }
+    },
+
+    async create(infoName, minSet, maxSet, minReps, maxReps) {
+      let toast = this.$toast;
+      let toggleModal = this.toggleModal;
+      let getWorkoutPlan = this.getWorkoutPlan;
+      const day = this.day;
+      await this.$axios
+        .post("/workout-plan-info", {
+          day: this.day,
+          workoutPlanId: this.$route.params.id,
+          name: infoName,
+          minSet: +minSet,
+          maxSet: +maxSet,
+          minReps: +minReps,
+          maxReps: +maxReps,
+        })
+        .then(function (response) {
+          toast.show({
+            message: ".با موفقیت ثبت شد",
+            classToast: "bg-primary z-50",
+            classTitle: "text-teal-100",
+            classMessage: "text-white text-right text-bold",
+            classClose: "text-white",
+            classTimeout: "bg-primary-800",
+          });
+          toggleModal();
+          getWorkoutPlan(day);
+        })
+        .catch(function (error) {
+          if (error.response.status === 401) {
+            toast.show({
+              message: "!خطا! شما مربی نیستید",
+              classToast: "bg-accent-2 z-50",
+              classTitle: "text-teal-100",
+              classMessage: "text-white text-right text-bold",
+              classClose: "text-white",
+              classTimeout: "bg-red-800",
+            });
+          }
+        });
     },
   },
   async mounted() {},
