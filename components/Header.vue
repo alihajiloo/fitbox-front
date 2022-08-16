@@ -35,7 +35,6 @@
             </div>
           </div>
           <div
-            @focusout="handleFocusOut"
             tabindex="0"
             class="hidden md:block">
             <div class="mr-4 flex items-center md:mr-6">
@@ -67,6 +66,7 @@
                   leave-class="transform opacity-100 scale-100"
                   leave-to-class="transform opacity-0 scale-95">
                   <div
+                    @click.prevent="toggle"
                     v-show="isOpen"
                     class="absolute left-0 z-50 mt-2 w-48 origin-top-right rounded-md shadow-lg">
                     <div
@@ -159,7 +159,6 @@
         </div>
       </div>
       <div
-        @focusout="handleFocusOut"
         tabindex="0"
         :class="[isOpen ? '' : 'hidden', 'md:hidden']">
         <div class="px-2 pt-2 pb-3 sm:px-3">
