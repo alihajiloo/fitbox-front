@@ -105,11 +105,12 @@
                     class="py-3 px-2">
                     تکرار
                   </th>
-                  <!-- <th
+                  <th
+                    v-if="$auth.user.type === 'COACH'"
                     scope="col"
                     class="py-3 px-2">
                     عملیات
-                  </th> -->
+                  </th>
                 </tr>
               </thead>
               <tbody v-if="workoutPlanInfos">
@@ -140,15 +141,17 @@
                   <td class="py-4 px-2">
                     {{ infos.maxReps == infos.minReps ? infos.maxReps : infos.maxReps + " - " + infos.minReps }}
                   </td>
-                  <!-- <td class="flex items-center space-x-3 py-4 px-2">
-                    <a
-                      href="#"
-                      class="max-w-8 h-5 max-h-8 w-5 md:h-6 md:w-6"
-                      ><img
-                        src="~/assets/vectors/check-mark.svg"
-                        alt="انجام شد" />
-                    </a>
-                  </td> -->
+                  <td
+                    v-if="$auth.user.type === 'COACH'"
+                    class="flex items-center space-x-3 py-4 px-2">
+                    <button
+                      @click="deleteInfo(infos.id)"
+                      class="max-w-8 h-5 max-h-8 w-5 md:h-6 md:w-6">
+                      <img
+                        src="~/assets/vectors/delete.svg"
+                        alt="حذف" />
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <!-- Modal toggle -->
@@ -381,6 +384,40 @@ export default {
             classTimeout: "bg-primary-800",
           });
           toggleModal();
+          getWorkoutPlan(day);
+        })
+        .catch(function (error) {
+          if (error.response.status === 401) {
+            toast.show({
+              message: "!خطا! شما مربی نیستید",
+              classToast: "bg-accent-2 z-50",
+              classTitle: "text-teal-100",
+              classMessage: "text-white text-right text-bold",
+              classClose: "text-white",
+              classTimeout: "bg-red-800",
+            });
+          }
+        });
+    },
+    async deleteInfo(workoutPlanId) {
+      let toast = this.$toast;
+      let getWorkoutPlan = this.getWorkoutPlan;
+      const day = this.day;
+      await this.$axios
+        .delete("/workout-plan-info", {
+          params: {
+            id: workoutPlanId,
+          },
+        })
+        .then(function (response) {
+          toast.show({
+            message: ".با موفقیت حذف شد" + day,
+            classToast: "bg-primary z-50",
+            classTitle: "text-teal-100",
+            classMessage: "text-white text-right text-bold",
+            classClose: "text-white",
+            classTimeout: "bg-primary-800",
+          });
           getWorkoutPlan(day);
         })
         .catch(function (error) {
